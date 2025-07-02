@@ -1,0 +1,1976 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Plataforma para el bienestar emocional y desarrollo personal de jóvenes a través de contenidos digitales inspiradores">
+    <meta name="keywords" content="bienestar emocional, desarrollo personal, redes sociales, jóvenes, motivación">
+    <title>Mentes Fuertes, Redes Conscientes</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <style>
+        :root {
+            --primary-color: #3778c2;
+            --secondary-color: #a8dadc;
+            --accent-color: #f39c12;
+            --dark-color: #1d3557;
+            --light-color: #f4f7f6;
+            --success-color: #2ecc71;
+            --error-color: #e74c3c;
+            --warning-color: #f1c40f;
+            --text-color: #333;
+            --text-light: #f8f9fa;
+        }
+
+        /* Estilos generales mejorados */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--light-color);
+            color: var(--text-color);
+            line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        body.admin-activo .btn-delete,
+        body.admin-activo .btn-edit {
+            opacity: 1;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header mejorado */
+        header {
+            background-color: var(--primary-color);
+            color: var(--text-light);
+            padding: 1rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+
+        .header-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo-icon {
+            margin-right: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        /* Menú de navegación mejorado */
+        .nav-menu {
+            display: flex;
+            margin: 0;
+            padding: 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-menu li a {
+            color: var(--text-light);
+            padding: 0.5rem 1rem;
+            border-radius: 0.25rem;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .nav-menu li a:hover, 
+        .nav-menu li a.active {
+            background-color: rgba(255,255,255,0.2);
+        }
+
+        .menu-icon {
+            display: none;
+            cursor: pointer;
+            font-size: 1.5rem;
+            color: white;
+        }
+
+        /* Sección hero mejorada */
+        .split-section {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            min-height: 90vh;
+        }
+
+        .left {
+            background-color: var(--secondary-color);
+            display: flex;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .right {
+            background-color: var(--dark-color);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+        }
+
+        .hero-content {
+            max-width: 500px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .left h2 {
+            font-size: 2.5rem;
+            color: var(--dark-color);
+            margin-bottom: 1rem;
+        }
+
+        .hero-subtitle {
+            font-size: 1.2rem;
+            color: var(--dark-color);
+            margin-bottom: 2rem;
+        }
+
+        .images {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+        }
+
+        .images img {
+            width: 150px;
+            border-radius: 0.75rem;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease;
+            object-fit: cover;
+        }
+
+        .images img:hover {
+            transform: scale(1.05);
+        }
+
+        .right img {
+            max-width: 80%;
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+            justify-content: center;
+        }
+
+        .button {
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            text-align: center;
+            border: none;
+            cursor: pointer;
+        }
+
+        .button.primary {
+            background-color: var(--dark-color);
+            color: var(--text-light);
+        }
+
+        .button.secondary {
+            background-color: transparent;
+            color: var(--dark-color);
+            border: 2px solid var(--dark-color);
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        /* Secciones de información */
+        .info-section {
+            padding: 4rem 0;
+            text-align: center;
+        }
+
+        .info-section h2 {
+            font-size: 2.5rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+        }
+
+        .info-section p {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        /* Carrusel mejorado */
+        .carousel-container {
+            position: relative;
+            max-width: 800px;
+            margin: 3rem auto;
+            overflow: hidden;
+            border-radius: 1rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+        }
+
+        .carousel-slides {
+            display: flex;
+            transition: transform 0.5s ease;
+        }
+
+        .slide {
+            min-width: 100%;
+            position: relative;
+        }
+
+        .slide img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+        }
+
+        .slide-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(0,0,0,0.7);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+        }
+
+        .carousel-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(255,255,255,0.3);
+            color: white;
+            border: none;
+            padding: 1rem;
+            cursor: pointer;
+            font-size: 1.5rem;
+            z-index: 10;
+            transition: all 0.3s ease;
+        }
+
+        .carousel-btn:hover {
+            background: rgba(255,255,255,0.5);
+        }
+
+        .prev {
+            left: 1rem;
+        }
+
+        .next {
+            right: 1rem;
+        }
+
+        .carousel-dots {
+            position: absolute;
+            bottom: 1rem;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+
+        /* Sección de visión */
+        .vision-section {
+            background-color: white;
+        }
+
+        .vision-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .vision-text {
+            flex: 1;
+            text-align: left;
+        }
+
+        .vision-image {
+            flex: 1;
+            position: relative;
+        }
+
+        .vision-image img {
+            border-radius: 1rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .vision-list {
+            margin-top: 1.5rem;
+        }
+
+        .vision-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .stats-overlay {
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 2rem;
+            background: white;
+            padding: 1rem 2rem;
+            border-radius: 0.5rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            display: block;
+        }
+
+        /* Sección de recursos */
+        .resources-section {
+            background-color: var(--light-color);
+            padding: 4rem 0;
+        }
+
+        .resource-controls {
+            max-width: 800px;
+            margin: 0 auto 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        .search-box {
+            display: flex;
+            max-width: 500px;
+            margin: 0 auto;
+        }
+
+        .search-box input {
+            flex: 1;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem 0 0 0.5rem;
+            font-family: inherit;
+        }
+
+        .search-box button {
+            padding: 0 1.2rem;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 0 0.5rem 0.5rem 0;
+            cursor: pointer;
+        }
+
+        .filter-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            padding: 0.5rem 1rem;
+            background-color: white;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-btn.active {
+            background-color: var(--primary-color);
+            color: white;
+            border-color: var(--primary-color);
+        }
+
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        .resource-card {
+            background-color: white;
+            border-radius: 0.75rem;
+            padding: 2rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .resource-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
+        }
+
+        .resource-icon {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .resource-card h3 {
+            margin-bottom: 1rem;
+            color: var(--dark-color);
+        }
+
+        .resource-card p {
+            margin-bottom: 1.5rem;
+            color: #666;
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--primary-color);
+            color: white;
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .download-btn:hover {
+            background-color: var(--dark-color);
+        }
+
+        /* Sección de contacto */
+        .contact-section {
+            background-color: var(--dark-color);
+            color: var(--text-light);
+            padding: 4rem 0;
+            position: relative;
+        }
+
+        .contact-section h2 {
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-section p {
+            max-width: 600px;
+            margin: 0 auto 2rem;
+        }
+
+        .social-icons {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .social-icon {
+            font-size: 2.5rem;
+            color: var(--text-light);
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+
+        .social-icon:hover {
+            transform: scale(1.2);
+        }
+
+        .fa-instagram:hover {
+            color: #E1306C;
+        }
+
+        .fa-tiktok:hover {
+            color: #69C9D0;
+        }
+
+        /* Chat widget seguro - ESTILOS ACTUALIZADOS */
+        .chat-container {
+            background-color: white;
+            border-radius: 1rem;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 400px;
+            margin: 2rem auto 0;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            height: 500px;
+        }
+
+        .chat-header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem;
+            text-align: center;
+            position: relative;
+        }
+
+        .chat-status {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.8rem;
+        }
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+        }
+
+        .status-dot.online {
+            background-color: var(--success-color);
+            animation: pulse 1.5s infinite;
+        }
+
+        @keyframes pulse {
+            0% { opacity: 1; }
+            50% { opacity: 0.5; }
+            100% { opacity: 1; }
+        }
+
+        .messages-container {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1rem;
+            background-color: #f5f5f5;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .message {
+            max-width: 80%;
+            padding: 0.8rem 1rem;
+            border-radius: 1rem;
+            position: relative;
+            word-wrap: break-word;
+            color: #333;
+        }
+
+        .message-header {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 0.3rem;
+        }
+
+        .message-role {
+            font-size: 0.7rem;
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            padding: 0.2rem 0.5rem;
+            border-radius: 0.8rem;
+        }
+
+        .message.received {
+            background-color: white;
+            border-top-left-radius: 0;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            margin-right: 20%;
+            color: #333;
+        }
+
+        .message.sent {
+            background-color: var(--primary-color);
+            color: white;
+            border-top-right-radius: 0;
+            margin-left: 20%;
+        }
+
+        .message-name {
+            font-weight: bold;
+            font-size: 0.8rem;
+            display: block;
+            color: #333;
+        }
+
+        .message-time {
+            font-size: 0.7rem;
+            opacity: 0.7;
+            text-align: right;
+            margin-top: 0.3rem;
+            color: inherit;
+        }
+
+        .message-content {
+            word-break: break-word;
+        }
+
+        .message-input-area {
+            padding: 1rem;
+            border-top: 1px solid #eee;
+            background-color: white;
+            position: relative;
+        }
+
+        .input-row {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .input-row input {
+            flex: 1;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            font-family: inherit;
+        }
+
+        .message-actions {
+            display: flex;
+            gap: 0.5rem;
+        }
+
+        #chat-message {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            resize: none;
+            font-family: inherit;
+            min-height: 60px;
+            max-height: 120px;
+        }
+
+        #chat-send {
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background-color 0.3s;
+        }
+
+        #chat-send:hover {
+            background-color: var(--dark-color);
+        }
+
+        .typing-indicator {
+            font-style: italic;
+            color: var(--dark-color);
+            padding: 0.5rem 1rem;
+            background-color: rgba(255,255,255,0.7);
+            border-radius: 1rem;
+            display: inline-block;
+            margin-bottom: 0.5rem;
+        }
+
+        .new-message-notification {
+            position: absolute;
+            bottom: 70px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 2rem;
+            font-size: 0.8rem;
+            cursor: pointer;
+            display: none;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+            z-index: 10;
+        }
+
+        .security-badge {
+            position: absolute;
+            bottom: 10px;
+            right: 10px;
+            font-size: 0.7rem;
+            color: var(--success-color);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        /* Panel de administrador */
+        .admin-panel {
+            background-color: #2c3e50;
+            color: white;
+            padding: 2rem;
+            display: none;
+        }
+
+        .admin-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid #3c4a5a;
+        }
+
+        .admin-actions {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .admin-actions button {
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .admin-actions button:last-child {
+            background-color: var(--error-color);
+            color: white;
+        }
+
+        .admin-tabs {
+            display: flex;
+            margin-bottom: 1.5rem;
+            border-bottom: 1px solid #3c4a5a;
+        }
+
+        .tab-btn {
+            padding: 0.8rem 1.5rem;
+            background: none;
+            border: none;
+            color: #bdc3c7;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .tab-btn.active {
+            color: white;
+            font-weight: 600;
+        }
+
+        .tab-btn.active::after {
+            content: '';
+            position: absolute;
+            bottom: -1px;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background-color: var(--accent-color);
+        }
+
+        .admin-tab-content {
+            display: none;
+        }
+
+        .admin-tab-content.active {
+            display: block;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 0.8rem;
+            border-radius: 0.5rem;
+            border: 1px solid #3c4a5a;
+            background-color: #34495e;
+            color: white;
+            font-family: inherit;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .form-row .form-group {
+            flex: 1;
+        }
+
+        .publish-btn {
+            background-color: var(--accent-color);
+            color: white;
+            padding: 0.8rem 1.5rem;
+            border: none;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: background-color 0.3s ease;
+        }
+
+        .publish-btn:hover {
+            background-color: #e67e22;
+        }
+
+        /* Contenido dinámico */
+        #contenido-dinamico {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+            padding: 2rem;
+            background-color: #f9f9f9;
+        }
+
+        .contenido-item {
+            background: white;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            position: relative;
+        }
+
+        .contenido-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .categoria-badge {
+            display: inline-block;
+            background-color: var(--secondary-color);
+            color: var(--dark-color);
+            padding: 0.25rem 0.5rem;
+            border-radius: 0.25rem;
+            font-size: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .contenido-item img {
+            margin-top: 1rem;
+            border-radius: 0.5rem;
+            width: 100%;
+            max-height: 200px;
+            object-fit: cover;
+        }
+
+        .btn-delete, .btn-edit {
+            position: absolute;
+            top: 0.75rem;
+            border: none;
+            border-radius: 0.3rem;
+            padding: 0.35rem 0.7rem;
+            cursor: pointer;
+            font-size: 0.8rem;
+            opacity: 0;
+            transition: opacity 0.2s ease;
+        }
+
+        .btn-edit {
+            right: 3.5rem;
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .btn-delete {
+            right: 0.75rem;
+            background-color: var(--error-color);
+            color: white;
+        }
+
+        .contenido-item:hover .btn-delete,
+        .contenido-item:hover .btn-edit {
+            opacity: 1;
+        }
+
+        .admin-content-item {
+            background-color: #34495e;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+        }
+
+        .admin-content-item p {
+            margin-bottom: 0.5rem;
+        }
+
+        .admin-content-item small {
+            color: #bdc3c7;
+        }
+
+        .admin-content-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.5rem;
+        }
+
+        .admin-content-actions button {
+            padding: 0.3rem 0.6rem;
+            border-radius: 0.3rem;
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            font-size: 0.8rem;
+        }
+
+        .edit-btn {
+            background-color: var(--accent-color);
+            color: white;
+        }
+
+        .delete-btn {
+            background-color: var(--error-color);
+            color: white;
+        }
+
+        /* Modal de contraseña */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.6);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 2000;
+        }
+
+        .modal-content {
+            background: white;
+            padding: 2rem;
+            border-radius: 0.5rem;
+            width: 90%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 1.5rem;
+            color: var(--dark-color);
+        }
+
+        .modal-content input {
+            width: 100%;
+            padding: 0.8rem;
+            margin-bottom: 1.5rem;
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+        }
+
+        .modal-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .modal-buttons button {
+            padding: 0.6rem 1.2rem;
+            border-radius: 0.5rem;
+            border: none;
+            cursor: pointer;
+        }
+
+        .modal-buttons button:first-child {
+            background-color: var(--primary-color);
+            color: white;
+        }
+
+        /* Protección contra ataques XSS */
+        .xss-warning {
+            display: none;
+            background-color: var(--warning-color);
+            color: var(--dark-color);
+            padding: 0.5rem;
+            border-radius: 0.3rem;
+            margin-top: 0.5rem;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 992px) {
+            .vision-content {
+                flex-direction: column;
+            }
+            
+            .vision-text, .vision-image {
+                width: 100%;
+            }
+            
+            .stats-overlay {
+                position: static;
+                transform: none;
+                margin-top: 2rem;
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .menu-icon {
+                display: block;
+            }
+            
+            .nav-menu {
+                position: fixed;
+                top: 70px;
+                right: -100%;
+                width: 80%;
+                max-width: 300px;
+                height: calc(100vh - 70px);
+                background: var(--primary-color);
+                flex-direction: column;
+                align-items: center;
+                padding: 2rem 0;
+                transition: right 0.3s ease;
+            }
+            
+            .nav-menu.active {
+                right: 0;
+            }
+            
+            .split-section {
+                grid-template-columns: 1fr;
+                min-height: auto;
+            }
+            
+            .cta-buttons {
+                flex-direction: column;
+            }
+            
+            .carousel-container {
+                margin: 2rem auto;
+            }
+            
+            .slide img {
+                height: 300px;
+            }
+            
+            .resources-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .form-row {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .chat-container {
+                height: 400px;
+            }
+
+            .message.received {
+                margin-right: 10%;
+            }
+
+            .message.sent {
+                margin-left: 10%;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header-container h1 {
+                font-size: 1.2rem;
+            }
+            
+            .left h2 {
+                font-size: 2rem;
+            }
+            
+            .images img {
+                width: 100px;
+            }
+            
+            .carousel-btn {
+                padding: 0.5rem;
+                font-size: 1rem;
+            }
+            
+            .stats-overlay {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <h1>
+                <span class="logo-icon"><i class="fas fa-brain"></i></span>
+                Mentes Fuertes, Redes Conscientes
+            </h1>
+            <nav>
+                <div class="menu-icon" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </div>
+                <ul class="nav-menu" id="nav-menu">
+                    <li><a href="#" class="active"><i class="fas fa-home"></i> Inicio</a></li>
+                    <li><a href="#mision"><i class="fas fa-bullseye"></i> Misión</a></li>
+                    <li><a href="#vision"><i class="fas fa-eye"></i> Visión</a></li>
+                    <li><a href="#recursos"><i class="fas fa-book"></i> Recursos</a></li>
+                    <li><a href="#contacto"><i class="fas fa-envelope"></i> Contacto</a></li>
+                    <li><a href="#admin" onclick="mostrarModal()"><i class="fas fa-lock"></i> Admin</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="split-section">
+        <section class="left">
+            <div class="hero-content">
+                <h2>Descubre tu Fortaleza</h2>
+                <p class="hero-subtitle">Convierte tus pensamientos en acciones positivas</p>
+                <div class="images">
+                    <img src="images/imgmoti.png" alt="Crecimiento Personal" loading="lazy">
+
+                </div>
+                <div class="cta-buttons">
+                    <button class="button primary" onclick="document.getElementById('contenido-dinamico').scrollIntoView({behavior: 'smooth'})">
+                        Explorar Contenido
+                    </button>
+                    <button class="button secondary" onclick="document.getElementById('contacto').scrollIntoView({behavior: 'smooth'})">
+                        Únete a la Comunidad
+                    </button>
+                </div>
+            </div>
+        </section>
+        <section class="right">
+            <div class="hero-image-container">
+                <img src="images/img2.jpg" alt="Conexión Consciente" loading="lazy">
+                <div class="image-overlay">
+                    <p>"Tu bienestar emocional comienza con pequeños pasos conscientes"</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <section id="contenido-dinamico"></section>
+
+    <section id="mision" class="info-section">
+        <div class="container">
+            <h2>Misión</h2>
+            <p>
+                Impulsar el bienestar emocional y el desarrollo personal de los jóvenes mediante contenidos digitales que inspiran, informan y fortalecen la mente. Nuestra misión es crear un espacio seguro y consciente en redes sociales, donde cada publicación sea una oportunidad para crecer, conectar y transformar pensamientos en acciones positivas.
+            </p>
+
+            <div class="carousel-container">
+                <div class="carousel-slides">
+                    <div class="slide active">
+                        <img src="images/carrusel1.jpg" alt="Inspiración" loading="lazy">
+                        <div class="slide-caption">Inspiración diaria para tu crecimiento</div>
+                    </div>
+                    <div class="slide">
+                        <img src="images/carrusel2.jpg" alt="Apoyo emocional" loading="lazy">
+                        <div class="slide-caption">Apoyo emocional cuando más lo necesitas</div>
+                    </div>
+                    <div class="slide">
+                        <img src="images/carrusel3.jpg" alt="Crecimiento personal" loading="lazy">
+                        <div class="slide-caption">Herramientas para tu desarrollo</div>
+                    </div>
+                </div>
+                <button class="carousel-btn prev" onclick="moveSlide(-1)">❮</button>
+                <button class="carousel-btn next" onclick="moveSlide(1)">❯</button>
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="currentSlide(1)"></span>
+                    <span class="dot" onclick="currentSlide(2)"></span>
+                    <span class="dot" onclick="currentSlide(3)"></span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="vision" class="info-section vision-section">
+        <div class="container">
+            <div class="vision-content">
+                <div class="vision-text">
+                    <h2>Visión</h2>
+                    <p>Ser una comunidad digital de apoyo emocional reconocida por su impacto positivo en la vida de los jóvenes de habla hispana.</p>
+                    <ul class="vision-list">
+                        <li><i class="fas fa-check-circle"></i> Plataforma líder en bienestar digital</li>
+                        <li><i class="fas fa-check-circle"></i> Contenido validado por expertos</li>
+                        <li><i class="fas fa-check-circle"></i> Comunidad activa y solidaria</li>
+                        <li><i class="fas fa-check-circle"></i> Impacto medible en calidad de vida</li>
+                    </ul>
+                </div>
+                <div class="vision-image">
+                    <img src="img1.jpg" alt="Imagen de visión" loading="lazy">
+                    <div class="stats-overlay">
+                        <div class="stat-item">
+                            <span class="stat-number">+5K</span>
+                            <span class="stat-label">Usuarios</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">+200</span>
+                            <span class="stat-label">Recursos</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="recursos" class="info-section resources-section">
+        <div class="container">
+            <h2>Recursos Exclusivos</h2>
+            <p>Explora nuestra colección de guías y materiales útiles</p>
+            
+            <div class="resource-controls">
+                <div class="search-box">
+                    <input type="text" placeholder="Buscar recursos..." id="resource-search">
+                    <button><i class="fas fa-search"></i></button>
+                </div>
+                <div class="filter-buttons">
+                    <button class="filter-btn active" data-category="all">Todos</button>
+                    <button class="filter-btn" data-category="guia">Guías</button>
+                    <button class="filter-btn" data-category="ejercicio">Ejercicios</button>
+                    <button class="filter-btn" data-category="video">Videos</button>
+                </div>
+            </div>
+
+            <div class="resources-grid">
+                <div class="resource-card" data-category="guia">
+                    <div class="resource-icon"><i class="fas fa-book-open"></i></div>
+                    <h3>Guía de Bienestar Integral</h3>
+                    <p>Una guía completa para reducir el estrés y mejorar tu equilibrio emocional.</p>
+                    <a href="Guía de Bienestar Integral.pdf" download class="download-btn">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+                </div>
+                
+                <div class="resource-card" data-category="ejercicio">
+                    <div class="resource-icon"><i class="fas fa-spa"></i></div>
+                    <h3>Ejercicios de Mindfulness</h3>
+                    <p>Técnicas prácticas para conectar con el presente y reducir la ansiedad.</p>
+                    <a href="Ejercicios de Mindfulness.pdf" download class="download-btn">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+                </div>
+                
+                <div class="resource-card" data-category="guia">
+                    <div class="resource-icon"><i class="fas fa-balance-scale"></i></div>
+                    <h3>Guía para un Mejor Balance</h3>
+                    <p>Para mejorar nuestro bienestar mental y emocional en la vida diaria.</p>
+                    <a href="Guía para un Mejor Balance.pdf" download class="download-btn">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+                </div>
+                
+                <div class="resource-card" data-category="video">
+                    <div class="resource-icon"><i class="fas fa-video"></i></div>
+                    <h3>Meditaciones Guiadas</h3>
+                    <p>Colección de videos para practicar meditación y relajación.</p>
+                    <a href="Meditaciones Guiadas.pdf" download class="download-btn">
+                        <i class="fas fa-download"></i> Descargar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contacto" class="info-section contact-section">
+        <div class="container">
+            <h2>Conecta con Nosotros</h2>
+            <p>Síguenos en nuestras redes sociales y chatea con nuestra comunidad para compartir experiencias y recibir apoyo.</p>
+
+            <div class="social-icons">
+                <a href="https://www.instagram.com/iam_erikmora?igsh=eGVkb2xwOGx2eWRt" target="_blank" class="social-icon">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.tiktok.com/@erik.r.mora.h?_t=ZS-8xGzwfynHBB&_r=1" target="_blank" class="social-icon">
+                    <i class="fab fa-tiktok"></i>
+                </a>
+            </div>
+
+            <!-- Chat en vivo seguro - ACTUALIZADO -->
+            <div id="chat-widget" class="chat-container">
+                <div class="chat-header">
+                    <h3>Chat de Apoyo</h3>
+                    <div class="chat-status">
+                        <span class="status-dot online"></span>
+                        <span>En línea</span>
+                    </div>
+                </div>
+                
+                <div id="chat-messages" class="messages-container">
+                    <!-- Mensajes se cargarán aquí -->
+                </div>
+                
+                <div class="new-message-notification" id="new-message-notification">
+                    Nuevo mensaje <i class="fas fa-arrow-down"></i>
+                </div>
+                
+                <div class="message-input-area">
+                    <div class="input-row">
+                        <input type="text" id="chat-name" placeholder="Tu nombre" maxlength="20">
+                    </div>
+                    <textarea id="chat-message" placeholder="Escribe tu mensaje..."></textarea>
+                    <div class="xss-warning" id="xss-warning">
+                        <i class="fas fa-shield-alt"></i> Por seguridad, evita incluir enlaces o código en tus mensajes.
+                    </div>
+                    <div class="message-actions">
+                        <button id="chat-send">Enviar <i class="fas fa-paper-plane"></i></button>
+                    </div>
+                    <div class="typing-indicator" id="typing-indicator"></div>
+                    <div class="security-badge">
+                        <i class="fas fa-lock"></i> Chat seguro
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="admin-panel" id="admin-panel">
+        <div class="container">
+            <div class="admin-header">
+                <h2><i class="fas fa-user-shield"></i> Panel de Administración</h2>
+                <div class="admin-actions">
+                    <button class="stats-btn"><i class="fas fa-chart-line"></i> Estadísticas</button>
+                    <button onclick="cerrarSesion()"><i class="fas fa-sign-out-alt"></i> Cerrar sesión</button>
+                </div>
+            </div>
+            
+            <div class="admin-tabs">
+                <button class="tab-btn active" onclick="openAdminTab('publicar')">Publicar</button>
+                <button class="tab-btn" onclick="openAdminTab('contenido')">Contenido</button>
+                <button class="tab-btn" onclick="openAdminTab('usuarios')">Usuarios</button>
+            </div>
+            
+            <div id="publicar-tab" class="admin-tab-content active">
+                <form onsubmit="publicarContenido(event)">
+                    <div class="form-group">
+                        <label for="texto"><i class="fas fa-align-left"></i> Mensaje motivacional:</label>
+                        <textarea id="texto" required></textarea>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="imagen"><i class="fas fa-image"></i> Imagen (opcional):</label>
+                            <input type="file" id="imagen" accept="image/*">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="categoria"><i class="fas fa-tag"></i> Categoría:</label>
+                            <select id="categoria">
+                                <option value="motivacion">Motivación</option>
+                                <option value="consejos">Consejos</option>
+                                <option value="reflexion">Reflexión</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <button type="submit" class="publish-btn">
+                        <i class="fas fa-paper-plane"></i> Publicar
+                    </button>
+                </form>
+            </div>
+            
+            <div id="contenido-tab" class="admin-tab-content">
+                <div id="admin-content-list"></div>
+            </div>
+            
+            <div id="usuarios-tab" class="admin-tab-content">
+                <p>Próximamente: Gestión de usuarios</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="modal-password" class="modal-overlay">
+        <div class="modal-content">
+            <h3>Acceso administrador</h3>
+            <input id="input-password" type="password" placeholder="Contraseña">
+            <div class="modal-buttons">
+                <button onclick="verificarPassword()">Ingresar</button>
+                <button onclick="cerrarModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Menú móvil
+        document.getElementById('menu-toggle').addEventListener('click', function() {
+            const menu = document.getElementById('nav-menu');
+            menu.classList.toggle('active');
+            this.classList.toggle('active');
+        });
+
+        // Cerrar menú al hacer clic en un enlace
+        document.querySelectorAll('.nav-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                document.getElementById('nav-menu').classList.remove('active');
+                document.getElementById('menu-toggle').classList.remove('active');
+            });
+        });
+
+        // Carrusel
+        let slideIndex = 1;
+        showSlides(slideIndex);
+
+        function moveSlide(n) {
+            showSlides(slideIndex += n);
+        }
+
+        function currentSlide(n) {
+            showSlides(slideIndex = n);
+        }
+
+        function showSlides(n) {
+            const slides = document.getElementsByClassName("slide");
+            const dots = document.getElementsByClassName("dot");
+            
+            if (n > slides.length) slideIndex = 1;
+            if (n < 1) slideIndex = slides.length;
+            
+            Array.from(slides).forEach(slide => slide.classList.remove("active"));
+            Array.from(dots).forEach(dot => dot.classList.remove("active"));
+            
+            slides[slideIndex-1].classList.add("active");
+            dots[slideIndex-1].classList.add("active");
+        }
+
+        // Autoplay para el carrusel
+        setInterval(() => moveSlide(1), 5000);
+
+        // Filtrado de recursos
+        document.querySelectorAll('.filter-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                const category = this.dataset.category;
+                
+                document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove("active"));
+                this.classList.add("active");
+                
+                document.querySelectorAll('.resource-card').forEach(card => {
+                    if (category === 'all' || card.dataset.category === category) {
+                        card.style.display = 'block';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // Búsqueda de recursos
+        document.getElementById('resource-search').addEventListener('input', function() {
+            const searchTerm = this.value.toLowerCase();
+            
+            document.querySelectorAll('.resource-card').forEach(card => {
+                const title = card.querySelector('h3').textContent.toLowerCase();
+                const description = card.querySelector('p').textContent.toLowerCase();
+                
+                if (title.includes(searchTerm) || description.includes(searchTerm)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // Panel de administrador
+        let administradorActivo = false;
+        const ADMIN_PASSWORD = "fortaleza2025"; // Contraseña de administrador
+
+        function mostrarModal() {
+            const modal = document.getElementById("modal-password");
+            modal.style.display = "flex";
+            document.getElementById("input-password").value = "";
+            document.getElementById("input-password").focus();
+            document.body.style.overflow = "hidden";
+        }
+
+        function cerrarModal() {
+            document.getElementById("modal-password").style.display = "none";
+            document.body.style.overflow = "auto";
+        }
+
+        function verificarPassword() {
+            const clave = document.getElementById("input-password").value;
+            
+            if (clave === ADMIN_PASSWORD) {
+                administradorActivo = true;
+                document.body.classList.add("admin-activo");
+                document.getElementById("admin-panel").style.display = "block";
+                cargarContenidoAdmin();
+                cerrarModal();
+                
+                // Scroll al panel de admin
+                document.getElementById("admin-panel").scrollIntoView({ behavior: 'smooth' });
+            } else {
+                alert("Contraseña incorrecta");
+            }
+        }
+
+        function cerrarSesion() {
+            administradorActivo = false;
+            document.body.classList.remove("admin-activo");
+            document.getElementById("admin-panel").style.display = "none";
+            mostrarPublicaciones();
+        }
+
+        function openAdminTab(tabId) {
+            // Ocultar todas las pestañas
+            document.querySelectorAll('.admin-tab-content').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Desactivar todos los botones de pestaña
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('active');
+            });
+            
+            // Mostrar la pestaña seleccionada
+            document.getElementById(`${tabId}-tab`).classList.add('active');
+            
+            // Activar el botón de la pestaña seleccionada
+            event.currentTarget.classList.add('active');
+            
+            // Cargar contenido específico si es necesario
+            if (tabId === 'contenido') {
+                cargarContenidoAdmin();
+            }
+        }
+
+        function cargarContenidoAdmin() {
+            const publicaciones = JSON.parse(localStorage.getItem("publicaciones") || []);
+            const adminContentList = document.getElementById("admin-content-list");
+            adminContentList.innerHTML = '';
+            
+            if (publicaciones.length === 0) {
+                adminContentList.innerHTML = '<p>No hay publicaciones aún.</p>';
+                return;
+            }
+            
+            publicaciones.forEach((pub, index) => {
+                const pubElement = document.createElement("div");
+                pubElement.className = "admin-content-item";
+                pubElement.innerHTML = `
+                    <p><strong>${index + 1}. ${pub.texto.substring(0, 50)}${pub.texto.length > 50 ? '...' : ''}</strong></p>
+                    <small>${new Date(pub.fecha).toLocaleDateString()}</small>
+                    <div class="admin-content-actions">
+                        <button onclick="editarPublicacion(${index})" class="edit-btn"><i class="fas fa-edit"></i> Editar</button>
+                        <button onclick="eliminarPublicacion(${index})" class="delete-btn"><i class="fas fa-trash"></i> Eliminar</button>
+                    </div>
+                `;
+                adminContentList.appendChild(pubElement);
+            });
+        }
+
+        function publicarContenido(e) {
+            e.preventDefault();
+            const texto = document.getElementById("texto").value;
+            const imagenInput = document.getElementById("imagen");
+            const categoria = document.getElementById("categoria").value;
+            
+            if (!texto.trim()) {
+                alert("Por favor ingresa un mensaje válido.");
+                return;
+            }
+            
+            if (imagenInput.files.length > 0) {
+                const lector = new FileReader();
+                lector.onload = function(e) {
+                    guardarPublicacion(texto, e.target.result, categoria);
+                };
+                lector.readAsDataURL(imagenInput.files[0]);
+            } else {
+                guardarPublicacion(texto, null, categoria);
+            }
+            
+            e.target.reset();
+            alert('Contenido publicado exitosamente!');
+        }
+
+        function guardarPublicacion(texto, imagen, categoria) {
+            const publicaciones = JSON.parse(localStorage.getItem("publicaciones") || "[]");
+            publicaciones.push({ 
+                texto: texto, 
+                imagen: imagen,
+                categoria: categoria,
+                fecha: new Date().toISOString()
+            });
+            localStorage.setItem("publicaciones", JSON.stringify(publicaciones));
+            mostrarPublicaciones();
+            cargarContenidoAdmin();
+        }
+
+        function mostrarPublicaciones() {
+            const contenedor = document.getElementById("contenido-dinamico");
+            contenedor.innerHTML = "";
+            const publicaciones = JSON.parse(localStorage.getItem("publicaciones") || "[]");
+
+            publicaciones.forEach((pub, index) => {
+                const item = document.createElement("div");
+                item.className = "contenido-item";
+
+                const categoria = document.createElement("span");
+                categoria.className = "categoria-badge";
+                categoria.textContent = pub.categoria || "General";
+                item.appendChild(categoria);
+
+                const p = document.createElement("p");
+                p.textContent = pub.texto;
+                item.appendChild(p);
+
+                if (pub.imagen) {
+                    const img = document.createElement("img");
+                    img.src = pub.imagen;
+                    img.loading = "lazy";
+                    img.alt = "Imagen de contenido motivacional";
+                    item.appendChild(img);
+                }
+
+                // Solo mostrar botones de edición/eliminación si es admin
+                if (administradorActivo) {
+                    const btnDelete = document.createElement("button");
+                    btnDelete.className = "btn-delete";
+                    btnDelete.innerHTML = '<i class="fas fa-trash"></i>';
+                    btnDelete.onclick = () => eliminarPublicacion(index);
+
+                    const btnEdit = document.createElement("button");
+                    btnEdit.className = "btn-edit";
+                    btnEdit.innerHTML = '<i class="fas fa-edit"></i>';
+                    btnEdit.onclick = () => editarPublicacion(index);
+
+                    item.appendChild(btnEdit);
+                    item.appendChild(btnDelete);
+                }
+
+                contenedor.appendChild(item);
+            });
+        }
+
+        function eliminarPublicacion(index) {
+            if (!confirm("¿Estás seguro de que deseas eliminar esta publicación?")) return;
+            
+            const publicaciones = JSON.parse(localStorage.getItem("publicaciones") || []);
+            publicaciones.splice(index, 1);
+            localStorage.setItem("publicaciones", JSON.stringify(publicaciones));
+            mostrarPublicaciones();
+            cargarContenidoAdmin();
+        }
+
+        function editarPublicacion(index) {
+            const publicaciones = JSON.parse(localStorage.getItem("publicaciones") || []);
+            const nuevoTexto = prompt("Editar mensaje:", publicaciones[index].texto);
+            
+            if (nuevoTexto !== null) {
+                publicaciones[index].texto = nuevoTexto;
+                localStorage.setItem("publicaciones", JSON.stringify(publicaciones));
+                mostrarPublicaciones();
+                cargarContenidoAdmin();
+            }
+        }
+
+        // Chat en vivo seguro - CÓDIGO ACTUALIZADO
+        document.addEventListener('DOMContentLoaded', function() {
+            const chatMessages = document.getElementById("chat-messages");
+            const chatNameInput = document.getElementById("chat-name");
+            const chatMessageInput = document.getElementById("chat-message");
+            const chatSendButton = document.getElementById("chat-send");
+            const newMessageNotification = document.getElementById("new-message-notification");
+            const typingIndicator = document.getElementById("typing-indicator");
+            const xssWarning = document.getElementById("xss-warning");
+            
+            // Configuración del equipo de apoyo
+            const supportTeam = [
+                { name: 'Dra. Martínez', role: 'Psicóloga' },
+                { name: 'Lic. González', role: 'Consejera' },
+                { name: 'Equipo de Apoyo', role: 'Asistente' }
+            ];
+            
+            let isTyping = false;
+            let lastUserMessageTime = 0;
+            let typingInterval;
+            
+            // Cargar mensajes guardados
+            function loadMessages() {
+                const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+                chatMessages.innerHTML = '';
+                
+                // Mensaje de bienvenida por defecto si no hay mensajes
+                if (messages.length === 0) {
+                    const welcomeMessage = {
+                        name: supportTeam[0].name,
+                        message: '¡Hola! Soy ' + supportTeam[0].name + ', ' + supportTeam[0].role + '. ¿En qué puedo ayudarte hoy?',
+                        sent: false,
+                        timestamp: new Date().toISOString()
+                    };
+                    addMessage(welcomeMessage.name, welcomeMessage.message, welcomeMessage.sent);
+                    saveMessage(welcomeMessage.name, welcomeMessage.message, welcomeMessage.sent);
+                } else {
+                    messages.forEach(msg => {
+                        addMessage(msg.name, msg.message, msg.sent);
+                    });
+                }
+                
+                scrollToBottom();
+            }
+            
+            // Añadir mensaje al chat con mejor formato
+            function addMessage(name, message, isSent) {
+                const messageElement = document.createElement('div');
+                messageElement.className = `message ${isSent ? 'sent' : 'received'}`;
+                
+                const now = new Date();
+                const timeString = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
+                
+                // Mostrar rol si es del equipo de apoyo
+                const isSupportTeam = supportTeam.some(member => member.name === name);
+                const roleInfo = isSupportTeam ? 
+                    `<span class="message-role">${supportTeam.find(member => member.name === name).role}</span>` : '';
+                
+                messageElement.innerHTML = `
+                    ${!isSent ? `
+                        <div class="message-header">
+                            <span class="message-name">${name}</span>
+                            ${roleInfo}
+                        </div>
+                    ` : ''}
+                    <div class="message-content">${message}</div>
+                    <span class="message-time">${timeString}</span>
+                `;
+                
+                chatMessages.appendChild(messageElement);
+                scrollToBottom();
+            }
+            
+            // Guardar mensaje con validación
+            function saveMessage(name, message, isSent) {
+                // Validar contenido peligroso
+                if (/(<script|javascript:)/i.test(message)) {
+                    xssWarning.style.display = 'block';
+                    return false;
+                }
+                
+                xssWarning.style.display = 'none';
+                
+                const messages = JSON.parse(localStorage.getItem('chatMessages')) || [];
+                
+                // Limitar historial a 100 mensajes
+                if (messages.length >= 100) messages.shift();
+                
+                messages.push({
+                    name: name,
+                    message: message,
+                    sent: isSent,
+                    timestamp: new Date().toISOString()
+                });
+                
+                localStorage.setItem('chatMessages', JSON.stringify(messages));
+                return true;
+            }
+            
+            // Respuestas automáticas mejoradas
+            function sendAutoReply() {
+                const responder = supportTeam[Math.floor(Math.random() * supportTeam.length)];
+                const replies = [
+                    `Entiendo cómo te sientes. ¿Quieres compartir más detalles sobre tu situación?`,
+                    `Como ${responder.role.toLowerCase()}, he ayudado a muchas personas en situaciones similares. ¿Qué tal si exploramos algunas estrategias?`,
+                    `Gracias por compartir. El primer paso para sentirse mejor es reconocer lo que estamos experimentando.`,
+                    `¿Has probado algunas de las técnicas de relajación que compartimos en nuestros recursos?`,
+                    `Podría recomendarte algunos ejercicios específicos basados en lo que me cuentas. ¿Te interesaría?`,
+                    `Recuerda que es completamente normal sentirse así a veces. Lo importante es cómo lo manejamos.`,
+                    `¿En qué más puedo ayudarte hoy? Estoy aquí para escucharte y apoyarte.`
+                ];
+                
+                const replyMessage = replies[Math.floor(Math.random() * replies.length)];
+                
+                // Mostrar indicador de "escribiendo"
+                showTypingIndicator(responder.name);
+                
+                // Enviar respuesta después de un retraso (simulando tiempo de escritura)
+                setTimeout(() => {
+                    clearInterval(typingInterval);
+                    typingIndicator.style.display = 'none';
+                    
+                    if (saveMessage(responder.name, replyMessage, false)) {
+                        addMessage(responder.name, replyMessage, false);
+                        showNewMessageNotification();
+                    }
+                }, 2000 + Math.random() * 3000);
+            }
+            
+            // Mostrar "escribiendo..." con el nombre del profesional
+            function showTypingIndicator(responderName) {
+                let dots = 0;
+                typingIndicator.style.display = 'block';
+                
+                if (typingInterval) clearInterval(typingInterval);
+                
+                typingInterval = setInterval(() => {
+                    dots = (dots + 1) % 4;
+                    typingIndicator.textContent = `${responderName} está escribiendo${'.'.repeat(dots)}`;
+                }, 500);
+            }
+            
+            // Función para enviar mensajes del usuario
+            function sendMessage() {
+                const name = chatNameInput.value.trim();
+                const message = chatMessageInput.value.trim();
+                
+                if (!name || !message) {
+                    alert('Por favor, ingresa tu nombre y un mensaje.');
+                    return;
+                }
+                
+                if (message.length > 500) {
+                    alert('El mensaje es demasiado largo. Por favor, limítalo a 500 caracteres.');
+                    return;
+                }
+                
+                // Guardar y mostrar mensaje del usuario
+                if (saveMessage(name, message, true)) {
+                    addMessage(name, message, true);
+                    
+                    // Guardar nombre para futuros mensajes
+                    localStorage.setItem('chatUserName', name);
+                    chatMessageInput.value = '';
+                    lastUserMessageTime = Date.now();
+                    
+                    // Enviar respuesta después de un breve retraso
+                    setTimeout(sendAutoReply, 1000);
+                }
+            }
+            
+            // Funciones auxiliares
+            function scrollToBottom() {
+                chatMessages.scrollTop = chatMessages.scrollHeight;
+            }
+            
+            function showNewMessageNotification() {
+                if (chatMessages.scrollTop + chatMessages.clientHeight < chatMessages.scrollHeight - 50) {
+                    newMessageNotification.style.display = 'block';
+                }
+            }
+            
+            // Eventos
+            chatSendButton.addEventListener('click', sendMessage);
+            
+            chatMessageInput.addEventListener('keypress', function(e) {
+                if (e.key === 'Enter' && !e.shiftKey) {
+                    e.preventDefault();
+                    sendMessage();
+                }
+            });
+            
+            newMessageNotification.addEventListener('click', function() {
+                scrollToBottom();
+                this.style.display = 'none';
+            });
+            
+            chatMessages.addEventListener('scroll', function() {
+                if (chatMessages.scrollTop + chatMessages.clientHeight >= chatMessages.scrollHeight - 10) {
+                    newMessageNotification.style.display = 'none';
+                }
+            });
+            
+            // Cargar mensajes y nombre guardado al inicio
+            if (localStorage.getItem('chatUserName')) {
+                chatNameInput.value = localStorage.getItem('chatUserName');
+            }
+            loadMessages();
+            
+            // Simular actividad periódica
+            setInterval(() => {
+                if (Date.now() - lastUserMessageTime > 30000 && 
+                    JSON.parse(localStorage.getItem('chatMessages'))?.length > 0) {
+                    sendAutoReply();
+                    lastUserMessageTime = Date.now();
+                }
+            }, 30000);
+        });
+
+        // Cargar publicaciones al inicio
+        window.onload = function() {
+            // Inicializar datos si no existen
+            if (!localStorage.getItem('publicaciones')) {
+                const publicacionesIniciales = [
+                    {
+                        texto: "Bienvenido a nuestra plataforma de bienestar emocional. ¡Empieza tu viaje de crecimiento personal hoy!",
+                        imagen: null,
+                        categoria: "bienvenida",
+                        fecha: new Date().toISOString()
+                    },
+                    {
+                        texto: "Recuerda: Pequeños pasos diarios llevan a grandes cambios a largo plazo.",
+                        imagen: null,
+                        categoria: "motivacion",
+                        fecha: new Date().toISOString()
+                    }
+                ];
+                localStorage.setItem('publicaciones', JSON.stringify(publicacionesIniciales));
+            }
+            
+            if (!localStorage.getItem('chatMessages')) {
+                localStorage.setItem('chatMessages', JSON.stringify([]));
+            }
+            
+            mostrarPublicaciones();
+            
+            // Verificar si hay hash #admin en la URL
+            if (window.location.hash === '#admin') {
+                mostrarModal();
+            }
+        };
+    </script>
+</body>
+</html>
