@@ -2,11 +2,6 @@
 
 **Mentes Fuertes, Redes Conscientes** es una aplicación web educativa y motivacional enfocada en brindar apoyo emocional a jóvenes mediante contenido inspirador, recursos descargables y un chat interactivo de acompañamiento. El sitio está diseñado para ser seguro, accesible, ligero y adaptable a cualquier dispositivo.
 
----
-
-## 🚀 Demo en Vivo
-
-🔗 [Ver sitio desplegado en Netlify](https://mentesfuertes.netlify.app) *(ejemplo)*
 
 ---
 
