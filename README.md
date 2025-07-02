@@ -28,7 +28,6 @@
 
 ### Herramientas y Plataformas
 - Git + GitHub (control de versiones)
-- Netlify (despliegue continuo)
 - VS Code (editor)
 - Trello / Notion (gestión ágil)
 
